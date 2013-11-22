@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Matrices.cs" />
+    <Compile Include="MatrixMath.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
