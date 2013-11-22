@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Matrices.cs" />
     <Compile Include="MatrixMath.cs" />
+    <Compile Include="Quaternion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
