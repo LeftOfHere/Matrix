@@ -82,17 +82,38 @@ namespace Matrix
             return matrix;
         }
 
-        public float[] MultiplyQuaternions(Quaternion q1, Quaternion q2)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="q1"></param>
+        /// <param name="q2"></param>
+        /// <returns>New Quaternion</returns>
+        public Quaternion MultiplyQuaternions(Quaternion q1, Quaternion q2)
         {
             Quaternion newQ = new Quaternion();
 
             // Assume that this multiplies q1 x q2, in this order, resulting in "newQ".
-            newQ.w = q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z;
-            newQ.x = q1.w * q2.x + q1.x * q2.w + q1.y * q2.z - q1.z * q2.y;
-            newQ.y = q1.w * q2.y - q1.x * q2.z + q1.y * q2.w + q1.z * q2.x;
-            newQ.z = q1.w * q2.z + q1.x * q2.y - q1.y * q2.x + q1.z * q2.w;
+            newQ.W = q1.W * q2.W - q1.X * q2.X - q1.Y * q2.Y - q1.Z * q2.Z;
+            newQ.X = q1.W * q2.X + q1.X * q2.W + q1.Y * q2.Z - q1.Z * q2.Y;
+            newQ.Y = q1.W * q2.Y - q1.X * q2.Z + q1.Y * q2.W + q1.Z * q2.X;
+            newQ.Z = q1.W * q2.Z + q1.X * q2.Y - q1.Y * q2.X + q1.Z * q2.W;
 
-            return result;
+            return newQ;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="q1"></param>
+        /// <param name="q2"></param>
+        /// <returns>New Quaternion</returns>
+        public Quaternion InverseQuaternions(Quaternion q)
+        {
+            q.X *= -1;
+            q.Y *= -1;
+            q.Z *= -1;
+
+            return q;
         }
     }
 }

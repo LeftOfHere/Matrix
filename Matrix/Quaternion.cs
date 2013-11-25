@@ -23,8 +23,18 @@ namespace Matrix
             X = x;
             Y = y;
             Z = z;
+        }
 
+        public Quaternion QuaternionIdentity()
+        {
+            Quaternion q = new Quaternion();
 
+            q.X = 0;
+            q.Y = 0;
+            q.Z = 0;
+            q.W = 1;
+
+            return q;
         }
     }
 }
