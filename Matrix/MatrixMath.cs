@@ -115,5 +115,73 @@ namespace Matrix
 
             return q;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <param name="angle"></param>
+        /// <param name="rad"></param>
+        /// <returns>New Quaternion</returns>
+        public Quaternion AxisToQuaternion(Quaternion vector, float angle, bool rad)
+        {
+            // The new quaternion variable.
+            Quaternion q = new Quaternion();
+
+            // Converts the angle in degrees to radians.
+            if (!rad)
+                angle = new Matrices().DegreesToRadians(angle);
+
+            // Finds the Sin and Cosin for the half angle.
+            float sin = float.Parse(Math.Sin(angle * 0.5).ToString());
+            float cos = float.Parse(Math.Cos(angle * 0.5).ToString());
+
+            // Formula to construct a new Quaternion based on direction and angle.
+            q.W = cos;
+            q.X = vector.X * sin;
+            q.Y = vector.Y * sin;
+            q.Z = vector.Z * sin;
+
+            return q;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <param name="angleX"></param>
+        /// <param name="angleY"></param>
+        /// <param name="angleZ"></param>
+        /// <param name="rad"></param>
+        /// <returns></returns>
+        public Quaternion EulerAnglesToQuaternion(Quaternion vector, float angleX, float angleY, float angleZ, bool rad)
+        {
+            // The new quaternion variable.
+            Quaternion q = new Quaternion();
+
+            // Converts all degrees angles to radians.
+            if (!rad)
+            {
+                angleY = new Matrices().DegreesToRadians(angleY);
+                angleZ = new Matrices().DegreesToRadians(angleZ);
+                angleX = new Matrices().DegreesToRadians(angleX);
+            }
+
+            // Finds the Sin and Cosin for each half angles.
+            float sY = float.Parse(Math.Sin(angleY * 0.5).ToString());
+            float cY = float.Parse(Math.Cos(angleY * 0.5).ToString());
+            float sZ = float.Parse(Math.Sin(angleZ * 0.5).ToString());
+            float cZ = float.Parse(Math.Cos(angleZ * 0.5).ToString());
+            float sX = float.Parse(Math.Sin(angleX * 0.5).ToString());
+            float cX = float.Parse(Math.Cos(angleX * 0.5).ToString());
+
+            // Formula to construct a new Quaternion based on Euler Angles.
+            q.W = cY * cZ * cX - sY * sZ * sX;
+            q.X = sY * sZ * cX + cY * cZ * sX;
+            q.Y = sY * cZ * cX + cY * sZ * sX;
+            q.Z = cY * sZ * cX - sY * cZ * sX;
+
+            return q;
+        }
     }
 }
